@@ -7,11 +7,13 @@ const Header = () => {
     <header className="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex gap-3 text-white font-bold text-xl">
-            <div><img src='Logo.png' width={'84px'} height={'84px'} alt='Logo'></img></div>
-            Центр<br />
-            Мебельных<br />
-            Решений
+          <div className="flex gap-3 text-white font-bold text-l">
+            <div><img src='Logo.png' width={'74px'} height={'74px'} alt='Logo'></img></div>
+            <div><span className="flex text-[#fbf3e5]">Ц <span className='text-white/80'>ентр</span> </span>
+          <span className="flex text-[#5b6060]">М <span className='text-white/80'>ебельных</span></span>
+          <span className="flex text-[#e3ac70]">Р <span className='text-white/80'>ешений</span></span>
+            </div>
+            
           </div>
 
           {/* Desktop Navigation */}

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 
 const About = () => {
   const stats = [
@@ -11,10 +11,10 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-gray-900 text-white">
+    <section id="about" className="py-20 bg-gray-900 text-white" itemScope itemType="https://schema.org/LocalBusiness">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">Кто мы?</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 pt-10">Кто мы?</h2>
           
           <div className="mb-16">
             <p className="text-xl text-gray-300 leading-relaxed mb-6">

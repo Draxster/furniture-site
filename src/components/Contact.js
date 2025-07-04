@@ -123,7 +123,7 @@ const Contact = () => {
                   <div className="w-6 h-6 bg-gray-900 rounded-full flex-shrink-0 mt-1"></div>
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
-                    <p className="text-gray-600">raspil-raskroi@mail.ru</p>
+                    <p className="text-gray-600">info@blackfoam.ru</p>
                   </div>
                 </div>
 
@@ -275,6 +275,28 @@ const Contact = () => {
                     <p className="text-sm text-gray-600">+7(993)-626-20-20</p>
                   </div>
                 </div>
+
+                <div className="flex flex-1 items-center justify-center">
+                  <div className="flex-shrink-0">
+                   <svg width="44px" height="44px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.048"></g>
+                    <g id="SVGRepo_iconCarrier"> 
+                    <path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> 
+                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="#000000" stroke-width="2" stroke-linecap="round"></rect>
+                    </g>
+                  </svg>
+
+
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-sm font-medium text-gray-900">Почта</p>
+                    <p className="text-sm text-gray-600">info@blackfoam.ru</p>
+                  </div>
+                  
+                  
+                </div>
+                
                 
                 <div className="flex flex-1 items-center justify-center">
                   <div className="flex-shrink-0">

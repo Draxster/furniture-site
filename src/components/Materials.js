@@ -1,30 +1,28 @@
-﻿import React from 'react';
-
 const Materials = () => {
   const materials = [
     {
       name: 'ЛДСП',
-      image: '/materials/ldsp.jpeg', // Исправленный путь к изображению ЛДСП
+      image: 'assets/materials/ldsp.jpeg', // Исправленный путь к изображению ЛДСП
       description: 'Ламинированная древесно-стружечная плита'
     },
     {
       name: 'ДСП',
-      image: '/materials/dsp.jpg', // Путь к изображению ДСП
+      image: 'assets/materials/dsp.jpg', // Путь к изображению ДСП
       description: 'Древесно-стружечная плита'
     },
     {
       name: 'МДФ',
-      image: '/materials/mdf.jpg', // Путь к изображению МДФ
+      image: 'assets/materials/mdf.jpg', // Путь к изображению МДФ
       description: 'Древесноволокнистая плита средней плотности'
     },
     {
       name: 'Фанера',
-      image: '/materials/fanera.jpg', // Путь к изображению фанеры
+      image: 'assets/materials/fanera.jpg', // Путь к изображению фанеры
       description: 'Многослойный листовой материал'
     },
     {
       name: 'Дерево',
-      image: '/materials/tree.jpg', // Исправленный путь к изображению дерева
+      image: 'assets/materials/tree.jpg', // Исправленный путь к изображению дерева
       description: 'Натуральная древесина'
     }
   ];
@@ -51,7 +49,7 @@ const Materials = () => {
                 <div className="aspect-square bg-gray-200 relative overflow-hidden">
                   <img 
                     src={material.image} 
-                    alt={material.name}
+                    alt={`${material.name} - ${material.description} для изготовления мебели на заказ`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     onError={(e) => {
                       // Fallback если изображение не найдено

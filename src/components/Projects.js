@@ -1,75 +1,168 @@
-﻿import React from 'react';
+import { useState } from 'react';
 
-// Вынесены данные в отдельный файл (data/projects.ts)
+// Вынесены данные в отдельный файл (data/projects.js)
 import { projects } from '../data/projects';
 
-
 const Projects = () => {
+  const [selectedCategory, setSelectedCategory] = useState('Все');
+  const [visibleProjects, setVisibleProjects] = useState(6);
+
+  // Получаем уникальные категории
+  const categories = ['Все', ...new Set(projects.map(project => project.category))];
+
+  // Фильтруем проекты по выбранной категории
+  const filteredProjects = selectedCategory === 'Все' 
+    ? projects 
+    : projects.filter(project => project.category === selectedCategory);
+
+  const handleCategoryFilter = (category) => {
+    setSelectedCategory(category);
+    setVisibleProjects(6); // Сбрасываем количество видимых проектов при смене категории
+  };
+
+  const loadMoreProjects = () => {
+    setVisibleProjects(prev => prev + 6);
+  };
+
   return (
-    <section id="projects" className="py-20 bg-gray-100">
+    <section id="projects" className="py-20 bg-gray-100" itemScope itemType="https://schema.org/ItemList">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Заголовок и фильтры */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 md:mb-0">ПРОЕКТЫ</h2>
-            <div className="flex gap-4">
-              <button className="px-6 py-2 border border-gray-300 text-gray-700 hover:bg-gray-900 hover:text-white transition-colors duration-300">
-                Все проекты
-              </button>
-              <button className="px-6 py-2 border border-gray-300 text-gray-700 hover:bg-gray-900 hover:text-white transition-colors duration-300">
-                Кухни
-              </button>
-              <button className="px-6 py-2 border border-gray-300 text-gray-700 hover:bg-gray-900 hover:text-white transition-colors duration-300">
-                Офисы
-              </button>
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-0">РЕАЛИЗОВАННЫЕ ПРОЕКТЫ</h2>
+              <p className="text-lg text-gray-600 max-w-2xl">
+                Более 120 успешно реализованных проектов мебели на заказ для дома и офиса
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2 mt-8 md:mt-0">
+              {categories.map((category) => (
+                <button 
+                  key={category}
+                  onClick={() => handleCategoryFilter(category)}
+                  className={`px-4 py-2 rounded-lg border transition-all duration-300 ${
+                    selectedCategory === category 
+                      ? 'bg-gray-900 text-white border-gray-900' 
+                      : 'border-gray-300 text-gray-700 hover:bg-gray-900 hover:text-white'
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
             </div>
           </div>
 
           {/* Сетка проектов */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
+            {filteredProjects.slice(0, visibleProjects).map((project, index) => (
               <div 
                 key={project.id}
-                className="group relative overflow-hidden bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300"
+                className="group relative overflow-hidden bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300"
+                itemScope 
+                itemType="https://schema.org/CreativeWork"
+                itemProp="itemListElement"
               >
                 {/* Изображение с lazy loading и fallback */}
-                <div className="aspect-w-16 aspect-h-12 overflow-hidden">
+                <div className="aspect-w-16 aspect-h-12 overflow-hidden relative">
                   <img 
                     src={project.image}
-                    alt={`Проект: ${project.title} (${project.category})`} // Описательный alt
+                    alt={`Мебель на заказ: ${project.title} - ${project.description}`}
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy" // Оптимизация загрузки
-                    decoding="async" // Быстрая декодировка
-                    onError={(e) => e.currentTarget.src = '/fallback-image.jpg'} // Обработка ошибок
+                    loading={index < 3 ? "eager" : "lazy"}
+                    decoding="async"
+                    itemProp="image"
+                    onError={(e) => {
+                      e.currentTarget.src = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
+                    }}
                   />
+                  
+                  {/* Категория badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-black/70 text-white px-3 py-1 rounded-full text-sm font-medium">
+                      {project.category}
+                    </span>
+                  </div>
                 </div>
                 
-                {/* Overlay с кнопкой "Подробнее" */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button className="bg-white text-gray-900 px-6 py-2 rounded hover:bg-gray-100 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gray-900">
-                      Подробнее
-                    </button>
+                {/* Overlay с информацией */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                  <div className="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <h4 className="text-lg font-semibold mb-2" itemProp="name">{project.title}</h4>
+                    <p className="text-sm text-gray-200 mb-3 line-clamp-2" itemProp="description">
+                      {project.description}
+                    </p>
+                    <div className="flex items-center gap-4 text-xs text-gray-300">
+                      <span>📐 {project.area}</span>
+                      <span>⏱️ {project.duration}</span>
+                    </div>
                   </div>
                 </div>
 
                 {/* Контент карточки */}
                 <div className="p-6">
-                  <div className="text-sm text-gray-500 mb-2">{project.category}</div>
-                  <h3 className="text-xl font-semibold text-gray-900">{project.title}</h3>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm text-gray-500 font-medium">{project.category}</span>
+                    <div className="flex items-center gap-1">
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2" itemProp="name">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-gray-600 text-sm mb-3 line-clamp-2" itemProp="description">
+                    {project.description}
+                  </p>
+                  
+                  <div className="flex items-center justify-between text-sm text-gray-500">
+                    <span>Площадь: {project.area}</span>
+                    <span>Срок: {project.duration}</span>
+                  </div>
+                  
+                  <div className="mt-3 pt-3 border-t border-gray-100">
+                    <p className="text-xs text-gray-500">
+                      <strong>Материалы:</strong> {project.materials}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Кнопка "Смотреть все проекты" */}
-          <div className="text-center mt-12">
-            <button 
-              className="px-8 py-3 bg-gray-900 text-white hover:bg-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gray-900"
-              aria-label="Показать больше проектов"
-            >
-              Смотреть все проекты
-            </button>
+          {/* Показать больше проектов */}
+          {visibleProjects < filteredProjects.length && (
+            <div className="text-center mt-12">
+              <button 
+                onClick={loadMoreProjects}
+                className="px-8 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                aria-label="Показать больше проектов"
+              >
+                Показать ещё ({filteredProjects.length - visibleProjects})
+              </button>
+            </div>
+          )}
+
+          {/* Статистика */}
+          <div className="mt-16 bg-white rounded-lg p-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+              <div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">120+</div>
+                <div className="text-sm text-gray-600">Проектов реализовано</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">500+</div>
+                <div className="text-sm text-gray-600">Довольных клиентов</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">6</div>
+                <div className="text-sm text-gray-600">Лет опыта</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">10</div>
+                <div className="text-sm text-gray-600">Квалифицированных специалистов</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

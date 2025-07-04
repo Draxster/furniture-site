@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 
 const Footer = () => {
   return (
@@ -62,7 +62,7 @@ const Footer = () => {
                 </div>
                 <div>
                   <p className="font-medium text-white mb-1">Email:</p>
-                  <p>raspil-raskroi@mail.ru</p>
+                  <p>info@blackfoam.ru</p>
                 </div>
               </div>
             </div>

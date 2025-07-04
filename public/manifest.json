@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "ЦМР",
+  "name": "Центр Мебельных Решений - Мебель на заказ",
+  "description": "Изготовление эксклюзивной мебели на заказ. Кухни, шкафы, корпусная мебель.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +21,9 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#1f2937",
+  "background_color": "#ffffff",
+  "lang": "ru",
+  "scope": "/",
+  "orientation": "portrait-primary"
 }

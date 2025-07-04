@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import { useState } from 'react';
 import ConsultationModal from './ConsultationModal';
 
 const WorkProcess = () => {
@@ -83,7 +83,8 @@ const WorkProcess = () => {
             <p className="text-gray-300 mb-6">Готовы начать работу над вашим проектом?</p>
             <button 
               onClick={() => setIsModalOpen(true)}
-              className="px-8 py-3 bg-white text-gray-900 font-semibold hover:bg-gray-100 transition-colors duration-300"
+              aria-label="Получить консультацию"
+              className="px-8 py-3 bg-white rounded-lg text-gray-900 font-semibold hover:bg-gray-800 hover:text-white transition-colors duration-300"
             >
               Получить консультацию
             </button>
