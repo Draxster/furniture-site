@@ -1,13 +1,36 @@
 import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleAnchorClick = (e, anchor) => {
+    e.preventDefault();
+    setIsMenuOpen(false); // Закрываем мобильное меню
+    
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(anchor);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(anchor);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <a href="/" className="flex gap-3 text-white font-bold text-l cursor-pointer">
+          <a href="#/" className="flex gap-3 text-white font-bold text-l cursor-pointer">
             <div><img src='Logo.png' width={'74px'} height={'74px'} alt='Logo'></img>
             </div>
             <div>
@@ -19,11 +42,11 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <a href="#about" className="nav-link hover:text-white text-white/80 transition-colors">О нас</a>
-            <a href="#advantages" className="nav-link hover:text-white text-white/80 transition-colors">Преимущества</a>
-            <a href="#projects" className="nav-link hover:text-white text-white/80 transition-colors">Проекты</a>
-            <a href="#faq" className="nav-link hover:text-white text-white/80 transition-colors">FAQ</a>
-            <a href="#contact" className="nav-link hover:text-white text-white/80 transition-colors">Заказать</a>
+            <a href="#about" onClick={(e) => handleAnchorClick(e, 'about')} className="nav-link hover:text-white text-white/80 transition-colors">О нас</a>
+            <a href="#advantages" onClick={(e) => handleAnchorClick(e, 'advantages')} className="nav-link hover:text-white text-white/80 transition-colors">Преимущества</a>
+            <a href="#projects" onClick={(e) => handleAnchorClick(e, 'projects')} className="nav-link hover:text-white text-white/80 transition-colors">Проекты</a>
+            <a href="#faq" onClick={(e) => handleAnchorClick(e, 'faq')} className="nav-link hover:text-white text-white/80 transition-colors">FAQ</a>
+            <a href="#contact" onClick={(e) => handleAnchorClick(e, 'contact')} className="nav-link hover:text-white text-white/80 transition-colors">Заказать</a>
           </nav>
 
           {/* Social Media Links - скрыто на мобильных, показано на планшетах+ */}
@@ -57,11 +80,11 @@ const Header = () => {
         {isMenuOpen && (
           <nav className="md:hidden mt-4 pb-4">
             <div className="flex flex-col space-y-2">
-              <a href="#about" className="text-white hover:text-gray-300 transition-colors py-2">О нас</a>
-              <a href="#projects" className="text-white hover:text-gray-300 transition-colors py-2">Проекты</a>
-              <a href="#advantages" className="text-white hover:text-gray-300 transition-colors py-2">Преимущества</a>
-              <a href="#faq" className="text-white hover:text-gray-300 transition-colors py-2">FAQ</a>
-              <a href="#contact" className="text-white hover:text-gray-300 transition-colors py-2">Контакты</a>
+              <a href="#about" onClick={(e) => handleAnchorClick(e, 'about')} className="text-white hover:text-gray-300 transition-colors py-2">О нас</a>
+              <a href="#projects" onClick={(e) => handleAnchorClick(e, 'projects')} className="text-white hover:text-gray-300 transition-colors py-2">Проекты</a>
+              <a href="#advantages" onClick={(e) => handleAnchorClick(e, 'advantages')} className="text-white hover:text-gray-300 transition-colors py-2">Преимущества</a>
+              <a href="#faq" onClick={(e) => handleAnchorClick(e, 'faq')} className="text-white hover:text-gray-300 transition-colors py-2">FAQ</a>
+              <a href="#contact" onClick={(e) => handleAnchorClick(e, 'contact')} className="text-white hover:text-gray-300 transition-colors py-2">Контакты</a>
             </div>
           </nav>
         )}
