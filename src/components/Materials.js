@@ -1,4 +1,11 @@
-const Materials = () => {
+const Materials = ({ onConsultationClick }) => {
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const materials = [
     {
       name: 'ЛДСП',
@@ -28,18 +35,18 @@ const Materials = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-100">
+    <section className="py-12 md:py-20 bg-gray-100">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">Материалы</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 md:mb-8">Материалы</h2>
           
-          <p className="text-xl text-gray-600 mb-16 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 mb-8 md:mb-16 max-w-2xl mx-auto">
             Мы работаем только с качественными материалами от проверенных поставщиков.
             Каждый материал подбирается индивидуально под ваш проект.
           </p>
 
-          {/* Materials grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          {/* Materials grid - упрощенная для мобильных */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-6">
             {materials.map((material, index) => (
               <div 
                 key={index} 
@@ -68,12 +75,12 @@ const Materials = () => {
                   </div>
                 </div>
                 
-                {/* Material info */}
-                <div className="p-4">
-                  <h3 className="font-semibold text-gray-900 text-center mb-1">
+                {/* Material info - адаптивное отображение */}
+                <div className="p-2 md:p-4">
+                  <h3 className="font-semibold text-gray-900 text-center text-sm md:text-base mb-1">
                     {material.name}
                   </h3>
-                  <p className="text-xs text-gray-500 text-center">
+                  <p className="text-xs text-gray-500 text-center hidden md:block">
                     {material.description}
                   </p>
                 </div>
@@ -83,9 +90,17 @@ const Materials = () => {
 
           {/* Additional info */}
           <div className="mt-16 text-center">
-            <p className="text-gray-500 text-sm">
+            <p className="text-gray-500 text-sm mb-8">
               Все материалы сертифицированы и соответствуют международным стандартам качества
             </p>
+            
+            {/* Кнопка консультации */}
+            <button
+              onClick={onConsultationClick || scrollToContact}
+              className="px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300 shadow-lg"
+            >
+              Получить консультацию
+            </button>
           </div>
         </div>
       </div>

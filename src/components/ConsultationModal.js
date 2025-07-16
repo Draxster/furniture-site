@@ -6,7 +6,8 @@ const ConsultationModal = ({ isOpen, onClose, title = "Получить конс
     name: '',
     email: '',
     phone: '',
-    message: ''
+    message: '',
+    clientType: 'Частный клиент'
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
@@ -23,7 +24,8 @@ const ConsultationModal = ({ isOpen, onClose, title = "Получить конс
         name: '',
         email: '',
         phone: '',
-        message: ''
+        message: '',
+        clientType: 'Частный клиент'
       });
       setSubmitStatus(null);
       setIsSubmitting(false);
@@ -49,6 +51,7 @@ const ConsultationModal = ({ isOpen, onClose, title = "Получить конс
         from_email: formData.email,
         phone: formData.phone,
         message: formData.message,
+        client_type: formData.clientType,
         reply_to: formData.email,
         email: 'farizrahmatov11@gmail.com' // Получатель
       };
@@ -132,7 +135,7 @@ const ConsultationModal = ({ isOpen, onClose, title = "Получить конс
               required
               value={formData.name}
               onChange={(e) => setFormData({...formData, name: e.target.value})}
-              className="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-colors"
+              className="w-full px-4 py-3 text-gray-700 border border-gray-300 rounded focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-colors"
               placeholder="Ваше имя"
               disabled={isSubmitting}
             />
@@ -149,7 +152,7 @@ const ConsultationModal = ({ isOpen, onClose, title = "Получить конс
               required
               value={formData.email}
               onChange={(e) => setFormData({...formData, email: e.target.value})}
-              className="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-colors"
+              className="w-full px-4 py-3 text-gray-700 border border-gray-300 rounded focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-colors"
               placeholder="your@email.com"
               disabled={isSubmitting}
             />
@@ -165,10 +168,28 @@ const ConsultationModal = ({ isOpen, onClose, title = "Получить конс
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-colors"
+              className="w-full px-4 py-3 border text-gray-700 border-gray-300 rounded focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-colors"
               placeholder="+7 (999) 123-45-67"
               disabled={isSubmitting}
             />
+          </div>
+          
+          <div>
+            <label htmlFor="clientType" className="block text-sm font-medium text-gray-700 mb-2">
+              Тип клиента
+            </label>
+            <select
+              id="clientType"
+              name="clientType"
+              value={formData.clientType}
+              onChange={handleChange}
+              className="w-full px-4 py-3 text-gray-700 border border-gray-300 rounded focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-colors"
+              disabled={isSubmitting}
+            >
+              <option value="Частный клиент">Частный клиент</option>
+              <option value="Диллер">Диллер</option>
+              <option value="Юр. Лицо">Юр. Лицо</option>
+            </select>
           </div>
           
           <div>
@@ -181,7 +202,7 @@ const ConsultationModal = ({ isOpen, onClose, title = "Получить конс
               rows={4}
               value={formData.message}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-colors resize-none"
+              className="w-full px-4 py-3 text-gray-700 border border-gray-300 rounded focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-colors resize-none"
               placeholder="Расскажите о вашем проекте..."
               disabled={isSubmitting}
             ></textarea>

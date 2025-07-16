@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 
-const SEOOptimizedFAQ = () => {
+const SEOOptimizedFAQ = ({ onConsultationClick }) => {
   const [openItems, setOpenItems] = useState({});
+  
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const toggleItem = (index) => {
     setOpenItems(prev => ({
@@ -24,8 +31,8 @@ const SEOOptimizedFAQ = () => {
       answer: "Мы работаем по всей Москве и Московской области. Выезд дизайнера на замер в пределах МКАД бесплатный. За МКАД стоимость выезда рассчитывается индивидуально."
     },
     {
-      question: "Можно ли заказать дизайн-проект мебели?",
-      answer: "Да, наши дизайнеры создают индивидуальные проекты мебели с учетом ваших пожеланий и особенностей помещения. Стоимость дизайн-проекта засчитывается при заказе изготовления."
+      question: "От чего зависит стоимость заказа?",
+      answer: "{Стоимость заказа зависит от материалов, размеров, дизайна, фурнитуры, индивидуальных требований, сроков исполнения и услуг доставки."
     },
     {
       question: "Какие материалы вы используете?",
@@ -123,15 +130,27 @@ const SEOOptimizedFAQ = () => {
             <p className="text-gray-600 mb-4">
               Остались вопросы? Мы с радостью ответим на них!
             </p>
-            <a 
-              href="#contact" 
-              className="inline-flex items-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors duration-200"
-            >
-              Задать вопрос
-              <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="#contact" 
+                className="inline-flex items-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors duration-200"
+              >
+                Задать вопрос
+                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+              
+              <button
+                onClick={onConsultationClick || scrollToContact}
+                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200"
+              >
+                Получить консультацию
+                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>

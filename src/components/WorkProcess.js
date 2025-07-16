@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import ConsultationModal from './ConsultationModal';
 
-const WorkProcess = () => {
+const WorkProcess = ({ onConsultationClick }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const steps = [
     {
@@ -82,7 +89,7 @@ const WorkProcess = () => {
           <div className="text-center mt-16">
             <p className="text-gray-300 mb-6">Готовы начать работу над вашим проектом?</p>
             <button 
-              onClick={() => setIsModalOpen(true)}
+              onClick={onConsultationClick || (() => setIsModalOpen(true))}
               aria-label="Получить консультацию"
               className="px-8 py-3 bg-white rounded-lg text-gray-900 font-semibold hover:bg-gray-800 hover:text-white transition-colors duration-300"
             >

@@ -2,10 +2,20 @@ import { useState } from 'react';
 
 // Вынесены данные в отдельный файл (data/projects.js)
 import { projects } from '../data/projects';
+import ProjectModal from './ProjectModal';
 
-const Projects = () => {
+const Projects = ({ onConsultationClick }) => {
   const [selectedCategory, setSelectedCategory] = useState('Все');
   const [visibleProjects, setVisibleProjects] = useState(6);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   // Получаем уникальные категории
   const categories = ['Все', ...new Set(projects.map(project => project.category))];
@@ -22,6 +32,24 @@ const Projects = () => {
 
   const loadMoreProjects = () => {
     setVisibleProjects(prev => prev + 6);
+  };
+
+  const handleProjectClick = (project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
+
+  const handleOrderClick = () => {
+    if (onConsultationClick) {
+      onConsultationClick();
+    } else {
+      scrollToContact();
+    }
   };
 
   return (
@@ -58,10 +86,11 @@ const Projects = () => {
             {filteredProjects.slice(0, visibleProjects).map((project, index) => (
               <div 
                 key={project.id}
-                className="group relative overflow-hidden bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300"
+                className="group relative overflow-hidden bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer"
                 itemScope 
                 itemType="https://schema.org/CreativeWork"
                 itemProp="itemListElement"
+                onClick={() => handleProjectClick(project)}
               >
                 {/* Изображение с lazy loading и fallback */}
                 <div className="aspect-w-16 aspect-h-12 overflow-hidden relative">
@@ -164,8 +193,26 @@ const Projects = () => {
               </div>
             </div>
           </div>
+          
+          {/* Кнопка консультации */}
+          <div className="mt-12 text-center">
+            <button
+              onClick={handleOrderClick}
+              className="px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300 shadow-lg"
+            >
+              Получить консультацию по вашему проекту
+            </button>
+          </div>
         </div>
       </div>
+      
+      {/* Модальное окно проекта */}
+      <ProjectModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onOrderClick={handleOrderClick}
+      />
     </section>
   );
 };

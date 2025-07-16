@@ -6,7 +6,8 @@ const Contact = () => {
     name: '',
     email: '',
     phone: '',
-    message: ''
+    message: '',
+    clientType: 'Частный клиент'
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
@@ -56,6 +57,7 @@ const Contact = () => {
         from_email: formData.email,
         phone: formData.phone,
         message: formData.message,
+        client_type: formData.clientType,
         reply_to: formData.email,
         email: 'farizrahmatov11@gmail.com' // Получатель
       };
@@ -77,7 +79,8 @@ const Contact = () => {
         name: '',
         email: '',
         phone: '',
-        message: ''
+        message: '',
+        clientType: 'Частный клиент'
       });
 
     } catch (error) {
@@ -190,6 +193,23 @@ const Contact = () => {
                 </div>
 
                 <div>
+                  <label htmlFor="clientType" className="block text-sm font-medium text-gray-700 mb-2">
+                    Тип клиента
+                  </label>
+                  <select
+                    id="clientType"
+                    name="clientType"
+                    value={formData.clientType}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-colors"
+                  >
+                    <option value="Частный клиент">Частный клиент</option>
+                    <option value="Диллер">Диллер</option>
+                    <option value="Юр. Лицо">Юр. Лицо</option>
+                  </select>
+                </div>
+
+                <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                     Сообщение
                   </label>
@@ -249,9 +269,9 @@ const Contact = () => {
           </div>
           
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="p-6 border-b border-gray-200">
-              <div className="flex items-center md:grid-cols-3 gap-6">
-                <div className="flex flex-1 items-center justify-center">
+            <div className="p-4 md:p-6 border-b border-gray-200">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div className="flex items-center">
                   <div className="flex-shrink-0">
                     <svg className="h-6 w-6 text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -260,11 +280,11 @@ const Contact = () => {
                   </div>
                   <div className="ml-3">
                     <p className="text-sm font-medium text-gray-900">Адрес</p>
-                    <p className="text-sm text-gray-600">Красногорск, Нахабино, улица Институтская дом 18, оф. РММ/1 ЭТ ПОМ 7</p>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-tight">Красногорск, Нахабино, улица Институтская дом 18, оф. РММ/1 ЭТ ПОМ 7</p>
                   </div>
                 </div>
                 
-                <div className="flex flex-1 items-center justify-center">
+                <div className="flex items-center">
                   <div className="flex-shrink-0">
                     <svg className="h-6 w-6 text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -276,29 +296,20 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-1 items-center justify-center">
+                <div className="flex items-center">
                   <div className="flex-shrink-0">
-                   <svg width="44px" height="44px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.048"></g>
-                    <g id="SVGRepo_iconCarrier"> 
-                    <path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> 
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="#000000" stroke-width="2" stroke-linecap="round"></rect>
-                    </g>
-                  </svg>
-
-
+                   <svg className="h-6 w-6 text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> 
+                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"></rect>
+                   </svg>
                   </div>
                   <div className="ml-3">
                     <p className="text-sm font-medium text-gray-900">Почта</p>
                     <p className="text-sm text-gray-600">info@blackfoam.ru</p>
                   </div>
-                  
-                  
                 </div>
                 
-                
-                <div className="flex flex-1 items-center justify-center">
+                <div className="flex items-center">
                   <div className="flex-shrink-0">
                     <svg className="h-6 w-6 text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />

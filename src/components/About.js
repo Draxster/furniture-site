@@ -1,48 +1,63 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const About = () => {
-  const stats = [
-    { number: '120', label: 'Проектов реализовано' },
-    { number: '500', label: 'Довольных клиентов' },
-    { number: '85', label: 'Партнеров по всему миру' },
-    { number: '6', label: 'Лет на рынке' },
-    { number: '10', label: 'Специалистов в команде' },
-    { number: '50', label: 'Наград и сертификатов' }
-  ];
+const About = ({ onConsultationClick }) => {
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <section id="about" className="py-20 bg-gray-900 text-white" itemScope itemType="https://schema.org/LocalBusiness">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 pt-10">Кто мы?</h2>
+        <div className="flex flex-col items-center max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 pt-10">О компании</h2>
           
           <div className="mb-16">
             <p className="text-xl text-gray-300 leading-relaxed mb-6">
-              С 2019 года мы усердно работаем над развитием наших навыков и расширением наших возможностей, чтобы предлагать широкий ассортимент мебельной продукции как частным лицам, так и организациям. В производстве мы используем только высококачественные материалы и современное оборудование для создания мебели, а так же работаем с лучшими дизайнерами и студиями Москвы. Каждое изделие проходит жесткий контроль специалиста по качеству перед отгрузкой клиенту.
-            <br/><br/>
-Мы выполняем работы любой сложности: от прямого и криволинейного раскроя плит большой площади до вырезания декоративных элементов мебели со сложной геометрией и скосами. Наша команда опытных мастеров стремится к тому, чтобы каждый предмет мебели, покидающий нашу мастерскую, соответствовал нашим строгим стандартам качества и мастерства.
-<br/><br/>
+              Наша компания предлагает полный спектр услуг по изготовлению мебели, создавая уникальные и функциональные решения с 2019 года.
+              <br /><br />
 
-В нашей компании мы работаем как с физическими, так и с юридическими лицами, и в нашем портфолио широкий ассортимент мебельной продукции. Если Вы хотите обставить свой дом или офис или Вам нужна мебель на заказ для коммерческого проекта, мы здесь, чтобы помочь. Обращаясь к нам, Вы всегда можете рассчитывать на высокое качество продукции и первоклассный сервис на всех этапах взаимодействия независимо от того, заказываете Вы крупную партию товара или всего одно изделие.
+              Мы гордимся высоким качеством продукции, используя только лучшие материалы и современное оборудование, а также работая с ведущими дизайнерами Москвы.
+              <br /><br />
+
+              
+
+              
+
+              Если Вам нужна мебель для дома, офиса или коммерческого проекта, мы готовы помочь.
+              <br />
+              
             </p>
-            <p className="text-lg text-gray-400 leading-relaxed">
+            <p className="text-lg text-gray-400 leading-relaxed mb-8">
               Каждый проект для нас — это возможность создать что-то особенное, 
               что будет радовать вас долгие годы.
             </p>
-          </div>
-
-          {/* Statistics Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-sm text-gray-400 uppercase tracking-wider">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+            
+            {/* Кнопки */}
+            <div className="text-center flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/about"
+                className="inline-flex items-center px-8 py-3 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-800 hover:text-white transition-colors duration-300"
+              >
+                Подробнее о нас
+                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+              
+              <button
+                onClick={onConsultationClick || scrollToContact}
+                className="inline-flex items-center px-8 py-3 bg-blue-600  bg-white hover:bg-gray-800 hover:text-white font-semibold rounded-lg transition-colors duration-300"
+              >
+                Получить консультацию
+                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>

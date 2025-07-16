@@ -1,6 +1,13 @@
 import React from 'react';
 
-const Hero = () => {
+const Hero = ({ onConsultationClick }) => {
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative h-screen bg-gray-900 flex items-center justify-center" role="banner">
       {/* Background overlay */}
@@ -20,9 +27,9 @@ const Hero = () => {
       {/* Content */}
       <div className="z-20 text-center text-white px-4">
         <h1 className="flex flex-col items-start text-5xl md:text-7xl font-bold mb-8 leading-tight">
-          <span className="flex text-[#fbf3e5]">Ц <span className='text-white/80'>ентр</span> </span>
-          <span className="flex text-[#5b6060]">М <span className='text-white/80'>ебельных</span></span>
-          <span className="flex text-[#e3ac70]">Р <span className='text-white/80'>ешений</span></span>
+          <span className="flex text-[#fbf3e5]">Центр</span>
+          <span className="flex text-[#5b6060]">Мебельных</span>
+          <span className="flex text-[#e3ac70]">Решений</span>
         </h1>
         
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 mt-12">
@@ -31,6 +38,15 @@ const Hero = () => {
           <div className="text-right text-sm text-white/80">
             Место ваше - Мебель наша
           </div>
+        </div>
+        
+        <div className="mt-12">
+          <button
+            onClick={onConsultationClick || scrollToContact}
+            className="px-8 py-4 text-black bg-[#e3ac70] hover:bg-gray-800 hover:text-white font-semibold rounded-lg transition-colors duration-300 shadow-lg"
+          >
+            Получить консультацию
+          </button>
         </div>
       </div>
 
