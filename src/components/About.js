@@ -50,7 +50,7 @@ const About = ({ onConsultationClick }) => {
               
               <button
                 onClick={onConsultationClick || scrollToContact}
-                className="inline-flex items-center px-8 py-3 bg-blue-600  bg-white hover:bg-gray-800 hover:text-white font-semibold rounded-lg transition-colors duration-300"
+                className="inline-flex items-center px-8 py-3 bg-blue-600 text-white hover:bg-blue-700 font-semibold rounded-lg transition-colors duration-300"
               >
                 Получить консультацию
                 <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
