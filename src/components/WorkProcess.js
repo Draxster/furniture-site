@@ -4,12 +4,12 @@ import ConsultationModal from './ConsultationModal';
 const WorkProcess = ({ onConsultationClick }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  // const scrollToContact = () => {
+  //   const contactSection = document.getElementById('contact');
+  //   if (contactSection) {
+  //     contactSection.scrollIntoView({ behavior: 'smooth' });
+  //   }
+  // };
 
   const steps = [
     {
