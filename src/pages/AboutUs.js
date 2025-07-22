@@ -125,7 +125,7 @@ const AboutUs = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                   <div className="relative group">
                     <img 
-                      src="/assets/CPU_stanok.webp"
+                      src="assets/CPU_stanok.webp"
                       alt="CNC станок для обработки дерева"
                       className="w-full h-48 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-shadow duration-300"
                     />
@@ -136,7 +136,7 @@ const AboutUs = () => {
                   
                   <div className="relative group">
                     <img 
-                      src="/assets/stanok2.webp"
+                      src="assets/stanok2.webp"
                       alt="Производственный цех мебельной фабрики"
                       className="w-full h-48 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-shadow duration-300"
                     />
@@ -147,7 +147,7 @@ const AboutUs = () => {
                   
                   <div className="relative group">
                     <img 
-                      src="/assets/kromka_stanok.webp"
+                      src="assets/kromka_stanok.webp"
                       alt="Покрасочная камера"
                       className="w-full h-48 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-shadow duration-300"
                     />
@@ -158,7 +158,7 @@ const AboutUs = () => {
                   
                   <div className="relative group">
                     <img 
-                      src="/assets/raspil_stanok.webp"
+                      src="assets/raspil_stanok.webp"
                       alt="Сборочный участок"
                       className="w-full h-48 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-shadow duration-300"
                     />

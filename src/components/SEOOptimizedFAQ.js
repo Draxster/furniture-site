@@ -133,7 +133,7 @@ const SEOOptimizedFAQ = ({ onConsultationClick }) => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href="#contact" 
-                className="inline-flex items-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors duration-200"
+                className="inline-flex items-center px-6 py-3 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors duration-200"
               >
                 Задать вопрос
                 <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -143,7 +143,7 @@ const SEOOptimizedFAQ = ({ onConsultationClick }) => {
               
               <button
                 onClick={onConsultationClick || scrollToContact}
-                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200"
+                className="inline-flex items-center px-6 py-3 bg-[#e3ac70] text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors duration-200"
               >
                 Получить консультацию
                 <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

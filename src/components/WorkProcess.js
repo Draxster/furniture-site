@@ -91,7 +91,7 @@ const WorkProcess = ({ onConsultationClick }) => {
             <button 
               onClick={onConsultationClick || (() => setIsModalOpen(true))}
               aria-label="Получить консультацию"
-              className="px-8 py-3 bg-white rounded-lg text-gray-900 font-semibold hover:bg-gray-800 hover:text-white transition-colors duration-300"
+              className="px-8 py-3 bg-[#e3ac70] rounded-lg text-white font-semibold hover:bg-gray-800 hover:text-white transition-colors duration-300"
             >
               Получить консультацию
             </button>

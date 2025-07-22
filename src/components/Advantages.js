@@ -75,7 +75,7 @@ const Advantages = ({ onConsultationClick }) => {
           <div className="mt-12 text-center">
             <button
               onClick={onConsultationClick || scrollToContact}
-              className="px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300 shadow-lg"
+              className="px-8 py-4 bg-[#e3ac70] text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors duration-300 shadow-lg"
             >
               Получить консультацию
             </button>

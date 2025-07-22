@@ -34,13 +34,13 @@ const ScrollToTopButton = ({ onConsultationClick }) => {
   };
 
   return (
-    <div className={`fixed bottom-6 right-6 flex flex-col gap-3 transition-opacity duration-300 ${
+    <div className={`fixed bottom-6 z-10 right-6 flex flex-col gap-3 transition-opacity duration-300 ${
       isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
     }`}>
       {/* Кнопка для перехода к форме */}
       <button
         onClick={onConsultationClick || scrollToContact}
-        className="w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg hover:bg-blue-700 transition-colors duration-300"
+        className="w-14 h-14 rounded-full bg-[#e3ac70] text-white flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors duration-300"
         aria-label="Связаться с нами"
       >
         <svg 

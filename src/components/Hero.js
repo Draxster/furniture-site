@@ -43,7 +43,7 @@ const Hero = ({ onConsultationClick }) => {
         <div className="mt-12">
           <button
             onClick={onConsultationClick || scrollToContact}
-            className="px-8 py-4 text-black bg-[#e3ac70] hover:bg-gray-800 hover:text-white font-semibold rounded-lg transition-colors duration-300 shadow-lg"
+            className="px-8 py-4 text-white bg-[#e3ac70] hover:bg-gray-800 hover:text-white font-semibold rounded-lg transition-colors duration-300 shadow-lg"
           >
             Получить консультацию
           </button>
