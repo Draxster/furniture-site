@@ -1,12 +1,63 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 
 const ProjectModal = ({ project, isOpen, onClose, onOrderClick }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  // Сбрасываем индекс при открытии модального окна
+  useEffect(() => {
+    if (isOpen) {
+      setCurrentImageIndex(0);
+    }
+  }, [isOpen]);
+
+  // Добавляем навигацию с клавиатуры
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (!isOpen || !project) return;
+      
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevImage();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        nextImage();
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleKeyPress);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [isOpen, project, onClose]);
+  
   if (!isOpen || !project) return null;
 
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => 
+      prev === project.image.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => 
+      prev === 0 ? project.image.length - 1 : prev - 1
+    );
+  };
+
+  const goToImage = (index) => {
+    setCurrentImageIndex(index);
   };
 
   return (
@@ -30,16 +81,76 @@ const ProjectModal = ({ project, isOpen, onClose, onOrderClick }) => {
 
         {/* Содержимое модального окна */}
         <div className="p-6">
-          {/* Изображение */}
+          {/* Галерея изображений */}
           <div className="mb-6">
-            <img 
-              src={project.image}
-              alt={`Мебель на заказ: ${project.title} - ${project.description}`}
-              className="w-full h-64 object-cover rounded-lg"
-              onError={(e) => {
-                e.currentTarget.src = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
-              }}
-            />
+            {/* Основное изображение */}
+            <div className="relative mb-4">
+              <img 
+                src={project.image[currentImageIndex]}
+                alt={`Мебель на заказ: ${project.title} - ${project.description} #${currentImageIndex + 1}`}
+                className="w-full h-64 object-cover rounded-lg"
+                onError={(e) => {
+                  e.currentTarget.src = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
+                }}
+              />
+              
+              {/* Навигационные стрелки */}
+              {project.image.length > 1 && (
+                <>
+                  <button
+                    onClick={prevImage}
+                    className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
+                    aria-label="Предыдущее изображение"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={nextImage}
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
+                    aria-label="Следующее изображение"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </>
+              )}
+              
+              {/* Индикатор количества изображений */}
+              {project.image.length > 1 && (
+                <div className="absolute bottom-2 right-2 bg-black/50 text-white px-2 py-1 rounded text-sm">
+                  {currentImageIndex + 1} / {project.image.length}
+                </div>
+              )}
+            </div>
+            
+            {/* Миниатюры */}
+            {project.image.length > 1 && (
+              <div className="flex gap-2 overflow-x-auto">
+                {project.image.map((img, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToImage(index)}
+                    className={`flex-shrink-0 w-16 h-16 rounded border-2 overflow-hidden transition-all ${
+                      index === currentImageIndex 
+                        ? 'border-gray-900 opacity-100' 
+                        : 'border-gray-300 opacity-70 hover:opacity-100'
+                    }`}
+                  >
+                    <img
+                      src={img}
+                      alt={`Миниатюра ${index + 1}`}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
+                      }}
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Информация о проекте */}
@@ -87,7 +198,7 @@ const ProjectModal = ({ project, isOpen, onClose, onOrderClick }) => {
                 onOrderClick();
                 onClose();
               }}
-              className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 font-semibold"
+              className="flex-1 px-6 py-3 bg-[#e3ac70] text-white rounded-lg hover:bg-gray-800 transition-colors duration-300 font-semibold"
             >
               Заказать похожий проект
             </button>

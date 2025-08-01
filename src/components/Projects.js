@@ -95,7 +95,7 @@ const Projects = ({ onConsultationClick }) => {
                 {/* Изображение с lazy loading и fallback */}
                 <div className="aspect-w-16 aspect-h-12 overflow-hidden relative">
                   <img 
-                    src={project.image}
+                    src={project.image[0]}
                     alt={`Мебель на заказ: ${project.title} - ${project.description}`}
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
                     loading={index < 3 ? "eager" : "lazy"}
@@ -112,6 +112,18 @@ const Projects = ({ onConsultationClick }) => {
                       {project.category}
                     </span>
                   </div>
+                  
+                  {/* Индикатор количества фото */}
+                  {project.image.length > 1 && (
+                    <div className="absolute top-4 right-4">
+                      <span className="bg-black/70 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+                        </svg>
+                        {project.image.length}
+                      </span>
+                    </div>
+                  )}
                 </div>
                 
                 {/* Overlay с информацией */}
