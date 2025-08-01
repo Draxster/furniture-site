@@ -80,8 +80,12 @@ export const projects = [
     area: '8 м²',
     duration: '9 дней',
     image: [
-      'https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+      'assets/projects/dressingroom_1.jpg',
+      'assets/projects/dressingroom_1.1.jpg',
+      'assets/projects/dressingroom_1.2.jpg',
+      'assets/projects/dressingroom_1.3.jpg',
+      'assets/projects/dressingroom_1.4.jpg',
+      'assets/projects/dressingroom_1.5.jpg'
     ]
   },
   {
