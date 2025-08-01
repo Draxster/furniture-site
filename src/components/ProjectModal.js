@@ -1,8 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const ProjectModal = ({ project, isOpen, onClose, onOrderClick }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
+  // Функции навигации с мемоизацией
+  const nextImage = useCallback(() => {
+    if (!project) return;
+    setCurrentImageIndex((prev) => 
+      prev === project.image.length - 1 ? 0 : prev + 1
+    );
+  }, [project]);
+
+  const prevImage = useCallback(() => {
+    if (!project) return;
+    setCurrentImageIndex((prev) => 
+      prev === 0 ? project.image.length - 1 : prev - 1
+    );
+  }, [project]);
+
   // Сбрасываем индекс при открытии модального окна
   useEffect(() => {
     if (isOpen) {
@@ -34,7 +49,7 @@ const ProjectModal = ({ project, isOpen, onClose, onOrderClick }) => {
     return () => {
       document.removeEventListener('keydown', handleKeyPress);
     };
-  }, [isOpen, project, onClose]);
+  }, [isOpen, project, onClose, nextImage, prevImage]);
   
   if (!isOpen || !project) return null;
 
@@ -42,18 +57,6 @@ const ProjectModal = ({ project, isOpen, onClose, onOrderClick }) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
-  };
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev === project.image.length - 1 ? 0 : prev + 1
-    );
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev === 0 ? project.image.length - 1 : prev - 1
-    );
   };
 
   const goToImage = (index) => {
