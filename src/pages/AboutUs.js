@@ -137,33 +137,33 @@ const AboutUs = () => {
                   <div className="relative group">
                     <img 
                       src="assets/stanok2.webp"
-                      alt="Производственный цех мебельной фабрики"
+                      alt="Сверлильно-присадочный станок"
                       className="w-full h-48 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-shadow duration-300"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-                      <p className="text-white font-semibold">Производственный цех</p>
+                      <p className="text-white font-semibold">Сверлильно-присадочный станок</p>
                     </div>
                   </div>
                   
                   <div className="relative group">
                     <img 
                       src="assets/kromka_stanok.webp"
-                      alt="Покрасочная камера"
+                      alt="Кромкооблицовочный станок"
                       className="w-full h-48 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-shadow duration-300"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-                      <p className="text-white font-semibold">Покрасочная камера</p>
+                      <p className="text-white font-semibold">Кромкооблицовочный станок</p>
                     </div>
                   </div>
                   
                   <div className="relative group">
                     <img 
                       src="assets/raspil_stanok.webp"
-                      alt="Сборочный участок"
+                      alt="Форматно-раскроечный станок"
                       className="w-full h-48 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-shadow duration-300"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-                      <p className="text-white font-semibold">Сборочный участок</p>
+                      <p className="text-white font-semibold">Форматно-раскроечный станок</p>
                     </div>
                   </div>
                   
